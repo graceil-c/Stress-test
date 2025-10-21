@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ClimaSmart Weather | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">ClimaSmart</a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active" data-link>Home</a>
+                <a href="contact.html" class="nav-link" data-link>Contact</a>
+            </nav>
+            <button type="button" class="btn btn-secondary" id="themeToggle" title="Toggle dark mode">🌙</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Weather Forecast</h1>
+            <p>Search any city or use your location to see the latest weather.</p>
+            <a href="#weather" class="btn">Check Weather</a>
+        </section>
+
+        <section id="weather" class="card">
+            <div class="card-header">
+                <h2>Find Your Forecast</h2>
+                <div class="unit-toggle" role="group" aria-label="Units">
+                    <button type="button" class="btn btn-secondary" id="unitC" aria-pressed="true">°C</button>
+                    <button type="button" class="btn btn-secondary" id="unitF" aria-pressed="false">°F</button>
+                </div>
+            </div>
+
+            <form id="weatherForm" class="form" novalidate>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="e.g., London, Lagos, New York" autocomplete="off" required />
+                    <div id="suggestions" class="suggestions" hidden></div>
+                    <small class="error" data-for="city"></small>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn" id="searchWeather">Search</button>
+                    <button type="button" class="btn btn-secondary" id="useLocation">Use My Location</button>
+                    <button type="button" class="btn btn-secondary" id="saveFavorite" title="Save current city">☆ Save</button>
+                </div>
+            </form>
+
+            <div class="chips-row">
+                <div id="recentSearches" class="chips" aria-label="Recent searches" hidden></div>
+                <div class="chips-actions">
+                    <button type="button" class="btn btn-secondary" id="clearRecents" title="Clear recents">Clear</button>
+                </div>
+            </div>
+
+            <div id="weatherResults" class="weather">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+            </div>
+            <div id="airQuality" class="card" hidden>
+                <h3>Air Quality</h3>
+                <div id="aqiSummary" class="meta"></div>
+                <div id="aqiDetails" class="chips"></div>
+            </div>
+
+            <div class="chips-row">
+                <div id="favorites" class="chips" aria-label="Favorites" hidden></div>
+                <div class="chips-actions">
+                    <button type="button" class="btn btn-secondary" id="clearFavorites" title="Clear favorites">Clear</button>
+                </div>
+            </div>
+
+            <div id="dailyForecast" class="forecast" hidden>
+                <h3 class="forecast-title">Next 5 Days</h3>
+                <div class="forecast-grid" id="forecastGrid"></div>
+            </div>
+
+            <div id="hourly" class="card" hidden>
+                <h3>Next 12 Hours</h3>
+                <canvas id="hourlyChart" width="800" height="220" aria-label="Hourly temperature chart" role="img"></canvas>
+            </div>
+            <p class="muted">Powered by the Open‑Meteo APIs</p>
+        </section>
+
+        <section class="grid two">
+            <div class="card">
+                <h3>What’s included</h3>
+                <ul class="checklist">
+                    <li>Two pages: Home and Contact</li>
+                    <li>One form with client-side validation</li>
+                    <li>API integration (Open‑Meteo geocoding + forecast)</li>
+                    <li>Responsive layout and accessible controls</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Need support?</h3>
+                <p>Use the <a href="contact.html">Contact</a> page to send us feedback about forecasts or locations.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> ClimaSmart</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
+
+

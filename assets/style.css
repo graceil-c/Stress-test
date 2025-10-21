@@ -1,0 +1,150 @@
+/* Base styles */
+:root {
+    /* Light theme per spec */
+    --bg: #F9FAFB;
+    --panel: #ffffff;
+    --text: #475569;
+    --muted: #64748B;
+    --primary: #3A86FF;
+    --primary-700: #2E6FCC;
+    --secondary: #E5E7EB;
+    --success: #80ED99;
+    --sunny: #FFB703;
+    --danger: #ef4444;
+    --shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --bg: #0F172A;
+    --panel: #111827;
+    --text: #E5E7EB;
+    --muted: #9CA3AF;
+    --primary: #3A86FF; /* same accent */
+    --primary-700: #2E6FCC;
+    --secondary: #1F2937;
+    --success: #80ED99;
+    --sunny: #FFB703;
+    --danger: #ef4444;
+    --shadow: 0 8px 24px rgba(0,0,0,0.40);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+}
+
+.container { width: min(1100px, 92%); margin: 0 auto; }
+
+/* Header */
+.site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.3px; font-size: 20px; }
+.nav { display: flex; gap: 10px; }
+.nav-link { color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 8px; }
+.nav-link:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+.nav-link.active { background: rgba(58,134,255,0.15); color: var(--text); }
+
+/* Hero */
+.hero { padding: 48px 0; }
+.hero h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 40px); }
+.hero p { margin: 0 0 16px; color: var(--muted); }
+
+/* Cards */
+.card {
+    background: var(--panel);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 18px 18px 14px;
+    box-shadow: var(--shadow);
+    margin: 18px 0;
+}
+.card-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+
+/* Buttons */
+.btn { appearance: none; border: 0; background: var(--primary); color: #ffffff; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; box-shadow: 0 6px 16px rgba(58,134,255,0.35); }
+.btn:hover { background: var(--primary-700); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-secondary { background: var(--secondary); color: var(--text); box-shadow: none; }
+.unit-toggle .btn { color: var(--text); }
+.unit-toggle .btn[aria-pressed="true"] { background: var(--primary); color: #fff; }
+.btn-secondary[aria-pressed="true"] { background: var(--primary); color: #071225; }
+
+/* Grid */
+.grid.two { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 780px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+
+/* Advice block */
+.advice { min-height: 64px; font-size: 18px; }
+.muted { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+.skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.16), rgba(255,255,255,0.08)); background-size: 200% 100%; animation: shimmer 1.2s infinite; height: 16px; border-radius: 6px; }
+.skeleton + .skeleton { margin-top: 8px; }
+.skeleton.short { width: 45%; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Form */
+.form { display: grid; gap: 14px; }
+.form-group { display: grid; gap: 6px; }
+label { font-weight: 600; }
+input, textarea { width: 100%; padding: 10px 12px; border-radius: 10px; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); color: var(--text); }
+input:focus, textarea:focus { outline: 2px solid rgba(58,134,255,0.35); border-color: rgba(58,134,255,0.35); }
+[data-theme="dark"] input, [data-theme="dark"] textarea { background: #0b1226; border-color: rgba(255,255,255,0.12); }
+.form-actions { display: flex; gap: 10px; }
+.error { color: var(--danger); min-height: 18px; }
+
+/* Suggestions dropdown */
+.suggestions { position: relative; }
+.suggestions[hidden] { display: none; }
+.suggestions { background: var(--panel); border: 1px solid rgba(0,0,0,0.08); border-radius: 10px; margin-top: 6px; box-shadow: var(--shadow); overflow: hidden; }
+.suggestion { padding: 8px 10px; cursor: pointer; display: flex; justify-content: space-between; gap: 10px; }
+.suggestion:hover { background: rgba(255,255,255,0.06); }
+.suggestion .meta { font-size: 12px; }
+
+.alert { margin-top: 12px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(20, 184, 133, 0.12); color: var(--text); }
+.alert.error { background: rgba(239, 68, 68, 0.14); }
+
+/* Footer */
+.site-footer { margin: 32px 0 20px; color: var(--muted); }
+
+/* Utility */
+.checklist { padding-left: 18px; }
+.checklist li { margin: 6px 0; }
+
+/* Weather results */
+.weather { display: grid; gap: 8px; margin-top: 10px; }
+.weather .current { display: grid; gap: 6px; }
+.weather .current h3 { margin: 4px 0; }
+.meta { color: var(--muted); font-size: 13px; }
+
+/* Recent searches */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.chip { padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.06); cursor: pointer; }
+.chip:hover { background: rgba(255,255,255,0.14); }
+.chips-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.chips-actions { display: flex; gap: 8px; }
+
+/* Forecast */
+.forecast { margin-top: 12px; }
+.forecast-title { margin: 8px 0 6px; }
+.forecast-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 780px) { .forecast-grid { grid-template-columns: repeat(5, 1fr); } }
+.forecast-card { background: var(--panel); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; padding: 12px; display: grid; gap: 6px; text-align: center; }
+.forecast-card .icon { font-size: 26px; }
+.forecast-card .range { font-weight: 600; }
+
+/* Hourly chart container */
+#hourly { margin-top: 14px; }
+canvas { max-width: 100%; height: auto; }
+
+
